@@ -9,11 +9,16 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # Updated to v3 to support Node 16
+      uses: actions/checkout@v3
 
     - name: Install dependencies
       run: |
-        pip install transformers
+        python -m pip install --upgrade pip
+        pip install torch transformers sentencepiece
+
+    - name: Create model directory
+      run: |
+        mkdir -p ./t5-model
 
     - name: Download T5-base model
       run: |
@@ -24,8 +29,8 @@ jobs:
 
     - name: Commit model to repository
       run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
+        git config --local user.email 'actions@github.com'
+        git config --local user.name 'GitHub Actions'
         git add ./t5-model
         git commit -m 'Add T5-base model'
         git push
