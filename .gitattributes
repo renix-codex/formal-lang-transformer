@@ -5,3 +5,4 @@ binary filter=lfs diff=lfs merge=lfs -text
 model filter=lfs diff=lfs merge=lfs -text
 files filter=lfs diff=lfs merge=lfs -text
 *.bin filter=lfs diff=lfs merge=lfs -text
+t5-model/models--t5-base/blobs/a90903540cc02cbeb7ff9f823f1a80eb778c7e22426a0e620b01c77a5ec8f5b4 filter=lfs diff=lfs merge=lfs -text
