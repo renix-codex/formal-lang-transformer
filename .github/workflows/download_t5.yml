@@ -11,14 +11,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install torch transformers sentencepiece
 
     - name: Create model directory
-      run: |
-        mkdir -p ./t5-model
+      run: mkdir -p ./t5-model
 
     - name: Download T5-base model
       run: |
@@ -29,14 +33,13 @@ jobs:
 
     - name: Commit model to repository
       run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add ./t5-model
         git commit -m 'Add T5-base model'
         
     - name: Push changes
-      env:
-        TOKEN: ${{ secrets.ACTIONS_PAT }}  # Use your personal access token
-      run: |
-        git push https://${{ secrets.ACTIONS_PAT }}@github.com/renix-codex/formal-lang-transformer.git
-
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
