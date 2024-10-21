@@ -1,2 +1,19 @@
 # Ignore the virtual environment folder
 myenv/
+# Ignore the large t5 model file
+t5-model/models--t5-base/blobs/a90903540cc02cbeb7ff9f823f1a80eb778c7e22426a0e620b01c77a5ec8f5b4
+
+# Ignore all files in the t5-model directory
+t5-model/**
+
+# Ignore common large file types
+*.hdf5
+*.h5
+*.pkl
+*.pth
+*.ckpt
+
+# Ignore potential data directories
+data/
+datasets/
+models/
